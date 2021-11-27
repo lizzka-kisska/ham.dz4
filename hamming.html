@@ -28,6 +28,7 @@
             }
 
             function decode(){
+                let num = 0;
                 let text = document.getElementById('codedData').value;
                 let flag1 = true, flag2 = true, flag3 = true;
                 if ((Number(text[0])+Number(text[1])+Number(text[3]))%2 != Number(text[4]))
@@ -37,21 +38,35 @@
                 if ((Number(text[1])+Number(text[2])+Number(text[3]))%2 != Number(text[6]))
                     flag3 = false;
 
-                if ((flag1==false)&&(flag2==false)&&(flag3==true))
+                if ((flag1==false)&&(flag2==false)&&(flag3==true)){
+                    num = 1;
                     text = String(1 - Number(text[0])) + text.substring(1,7);
-                else if ((flag1==true)&&(flag2==false)&&(flag3==false))
+                }
+                else if ((flag1==true)&&(flag2==false)&&(flag3==false)){
+                    num = 2;
                     text = text.substring(0,2) + String(1 - Number(text[2])) + text.substring(3,7);
-                else if ((flag1==false)&&(flag2==true)&&(flag3==false))
+                }
+                else if ((flag1==false)&&(flag2==true)&&(flag3==false)){
+                    num = 3;
                     text = text.substring(0,1) + String(1 - Number(text[1])) + text.substring(2,7);
-                else if ((flag1==false)&&(flag2==false)&&(flag3==false))
+                }
+                else if ((flag1==false)&&(flag2==false)&&(flag3==false)){
+                    num = 4;
                     text = text.substring(0,3) + String(1 - Number(text[3])) + text.substring(4,7);
-                else if ((flag1==false)&&(flag2==true)&&(flag3==true))
+                }
+                else if ((flag1==false)&&(flag2==true)&&(flag3==true)){
+                    num = 5;
                     text = text.substring(0,4) + String(1 - Number(text[4])) + text.substring(5,7);
-                else if ((flag1==true)&&(flag2==false)&&(flag3==true))
+                }
+                else if ((flag1==true)&&(flag2==false)&&(flag3==true)){
+                    num = 6;
                     text = text.substring(0,5) + String(1 - Number(text[5])) + text.substring(6,7);
-                else if ((flag1==true)&&(flag2==true)&&(flag3==false))
+                }
+                else if ((flag1==true)&&(flag2==true)&&(flag3==false)){
+                    num = 7;
                     text = text.substring(0,6) + String(1 - Number(text[6]));
-                document.getElementById('decodedData').value = text.substring(0,4);
+                }
+                document.getElementById('decodedData').value = text.substring(0,4) + ", err bit:" + String(num);
                 //document.getElementById('decodedData').value = text;
 
             }
